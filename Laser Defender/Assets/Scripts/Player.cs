@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     /* Player Projectile */
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed;
+    [SerializeField] float projectileFiringPeriod;
+
+    /* Shooting Coroutine */
+    Coroutine firingRoutine;
 
     /* Player Padding */
     [SerializeField]  float xAxisPadding;
@@ -53,8 +57,21 @@ public class Player : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
+            firingRoutine = StartCoroutine(FiringLoop());
+        }
+        if(Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(firingRoutine);
+        }
+    }
+
+    IEnumerator FiringLoop()
+    {
+        while(true)
+        {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, projectileSpeed);
+            yield return new WaitForSeconds(projectileFiringPeriod);
         }
     }
 
@@ -71,6 +88,7 @@ public class Player : MonoBehaviour
     {
         movementSpeed = 10f;
         projectileSpeed = 10f;
+        projectileFiringPeriod = 0.1f;
         xAxisPadding = 0.6f;
         yAxisPadding = 0.4f;
 
@@ -79,4 +97,15 @@ public class Player : MonoBehaviour
             Debug.LogError("Player Projectile is missing");
         }
     }
+   
+    /*
+     * Basic structure of a Coroutine - to call it StartCoroutine(name())
+     * 
+    IEnumerator TestCoroutine()
+    {
+        Debug.Log("In TestCoroutine BEFORE YIELD");
+        yield return new WaitForSeconds(3);
+        Debug.Log("In TestCoroutine AFTER YIELD 3 SECONDS LATER");
+    }
+    */
 }
