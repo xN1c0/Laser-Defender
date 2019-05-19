@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 5640788187711623379}
   - component: {fileID: 7788114516403404201}
   - component: {fileID: 8854891782831722944}
-  m_Layer: 0
+  - component: {fileID: 7289918120308857715}
+  - component: {fileID: 945103048550394826}
+  m_Layer: 9
   m_Name: Enemy_Ship 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +110,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  shotCounter: 0
+  minTimeBetweenShots: 0.2
+  maxTimeBetweenShots: 3
+  projectileSpeed: 7
+  projectilePrefab: {fileID: 6666223801798680791, guid: d836634d566f8534aa0ec009437793d4,
+    type: 3}
+  deathVFX: {fileID: 9125440469621733146, guid: f038794e8c96b8044bf069fc2cf0a13c,
+    type: 3}
+  durationOfExplosion: 0.1
+  dieClip: {fileID: 8300000, guid: 82fbe573374e27d4e90492d89a161ca9, type: 3}
+  shootingClip: {fileID: 8300000, guid: d1dadd3568bbcb545b994ea5b47dabb3, type: 3}
+  dieClipVolume: 0.7
+  shootingClipVolume: 0.7
 --- !u!60 &8854891782831722944
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +160,37 @@ PolygonCollider2D:
       - {x: 0.41141832, y: -0.2016325}
       - {x: 0.41, y: 0.31}
       - {x: 0.28, y: 0.42}
+--- !u!114 &7289918120308857715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580187089690015703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e55f2746e891ea40aa2ab26abe927bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+--- !u!50 &945103048550394826
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580187089690015703}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
